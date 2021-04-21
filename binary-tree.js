@@ -1,4 +1,4 @@
-const side = {
+module.exports = side = {
     LEFT : 0,
     RIGHT : 1,
     BACK : 2
@@ -13,7 +13,7 @@ class Node {
     }
 }
 
-class BinaryTree {
+module.exports = class BinaryTree {
     constructor(rootValue) {
         this.root = new Node(rootValue, null);
         this.cursor = this.root;
@@ -105,30 +105,3 @@ class BinaryTree {
         )
     }
 }
-
-let bt = new BinaryTree(5);
-bt.addNode(3, side.LEFT);
-bt.addNode(7, side.RIGHT);
-
-bt.moveCursor(side.LEFT);
-bt.addNode(2, side.LEFT);
-bt.addNode(5, side.RIGHT);
-
-bt.moveCursor(side.BACK);
-bt.moveCursor(side.RIGHT);
-bt.addNode(1, side.LEFT);
-bt.addNode(0, side.RIGHT);
-
-bt.moveCursor(side.RIGHT);
-bt.addNode(2, side.LEFT);
-bt.addNode(8, side.RIGHT);
-
-bt.moveCursor(side.RIGHT);
-bt.addNode(5, side.RIGHT);
-
-bt.moveCursor(side.BACK);
-bt.moveCursor(side.BACK);
-bt.moveCursor(side.BACK); // Cursor shows on root location
-
-bt.printSubtree(bt.cursor);
-bt.printSubtreeValues(bt.cursor);
