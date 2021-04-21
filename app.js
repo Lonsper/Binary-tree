@@ -24,5 +24,5 @@ bt.moveCursor(side.BACK);
 bt.moveCursor(side.BACK);
 bt.moveCursor(side.BACK); // Cursor shows on root location
 
-bt.printSubtree(bt.cursor);
-bt.printSubtreeValues(bt.cursor);
+bt.printSubtree();
+bt.printSubtreeValues();

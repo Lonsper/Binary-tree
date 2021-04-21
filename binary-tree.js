@@ -46,8 +46,8 @@ module.exports = class BinaryTree {
         this.printAllNodes(this.root);
     }
 
-    printSubtree(cursorNode) {
-        this.printAllNodes(cursorNode);
+    printSubtree() {
+        this.printAllNodes(this.cursor);
     }
 
     printAllNodes(node) {
@@ -63,23 +63,30 @@ module.exports = class BinaryTree {
             return;
     }
 
-    prepareNodesArray(){
-        this.nodesValue = [];
-    }
-
-    calculateSubtreeValues(cursorNode, currentSum){
+    getNodesArray(cursorNode){
         if(cursorNode != null){
             if(cursorNode.nextLeft != null)
-                currentSum = this.calculateSubtreeValues(cursorNode.nextLeft, currentSum);
+                this.getNodesArray(cursorNode.nextLeft);
 
             if(cursorNode.nextRight != null)
-                currentSum = this.calculateSubtreeValues(cursorNode.nextRight, currentSum);
+                this.getNodesArray(cursorNode.nextRight);
 
             this.nodesValue.push(cursorNode.value);
-            return currentSum += cursorNode.value;
-        } else {
-            return currentSum += 0;
-        }
+        } else 
+            return;
+    }
+
+    prepareNodesArray(){
+        this.nodesValue = [];
+        this.getNodesArray(this.cursor);
+    }  
+
+    sumSubtreeValues(){
+        var tempSum = 0;
+        this.nodesValue.forEach(element => {
+            tempSum += element;
+        });
+        return tempSum;
     }
 
     calculateAverageSubtree(sum){
@@ -92,9 +99,9 @@ module.exports = class BinaryTree {
         return this.nodesValue.length % 2 !== 0 ? sortedValues[midValue] : (sortedValues[midValue - 1] + sortedValues[midValue]) / 2;
     }  
 
-    printSubtreeValues(cursorNode) {
+    printSubtreeValues() {
         this.prepareNodesArray();
-        var sum = this.calculateSubtreeValues(cursorNode, 0);
+        var sum = this.sumSubtreeValues();
         var average = this.calculateAverageSubtree(sum);
         var median = this.calculateMedianSubtree();
 
