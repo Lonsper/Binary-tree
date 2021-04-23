@@ -26,34 +26,34 @@ describe('Class BinaryTree Test', () => {
 
     it('add left leaf to tree', () =>{
         let treeInstance = new BinaryTree(5);
-        treeInstance.addNode(4, side.LEFT);
+        treeInstance.addTreeNode(4, side.LEFT);
         assert.equal(treeInstance.root.nextLeft.value, 4);
     });
 
     it('add right leaf to tree', () =>{
         let treeInstance = new BinaryTree(5);
-        treeInstance.addNode(6, side.RIGHT);
+        treeInstance.addTreeNode(6, side.RIGHT);
         assert.equal(treeInstance.root.nextRight.value, 6);
     });
 
     it('overwrite right leaf', () =>{
         let treeInstance = new BinaryTree(5);
-        treeInstance.addNode(4, side.LEFT);
-        treeInstance.addNode(5, side.LEFT);
+        treeInstance.addTreeNode(4, side.LEFT);
+        treeInstance.addTreeNode(5, side.LEFT);
         assert.notEqual(treeInstance.root.nextLeft.value, 4);
         assert.equal(treeInstance.root.nextLeft.value, 5);
     });
 
     it('check leaf parent', () =>{
         let treeInstance = new BinaryTree(5);
-        treeInstance.addNode(4, side.LEFT);
+        treeInstance.addTreeNode(4, side.LEFT);
         assert.equal(treeInstance.root.nextLeft.parent.value, 5);
     });
 
     it('check cursor moving left, right and back', () =>{
         let treeInstance = new BinaryTree(1);
-        treeInstance.addNode(2, side.LEFT);
-        treeInstance.addNode(3, side.RIGHT);
+        treeInstance.addTreeNode(2, side.LEFT);
+        treeInstance.addTreeNode(3, side.RIGHT);
 
         treeInstance.moveCursor(side.LEFT);
         assert.equal(treeInstance.cursor.value, 2);
@@ -70,20 +70,20 @@ describe('Class BinaryTree Test', () => {
 
     it('rewrite nodes value to list', () =>{
         let treeInstance = new BinaryTree(1);
-        treeInstance.addNode(2, side.LEFT);
-        treeInstance.addNode(3, side.RIGHT);
+        treeInstance.addTreeNode(2, side.LEFT);
+        treeInstance.addTreeNode(3, side.RIGHT);
 
         treeInstance.prepareNodesArray();
-        treeInstance.nodesValue = [...treeInstance.nodesValue].sort((a, b) => a - b);
+        treeInstance.nodeValues = [...treeInstance.nodeValues].sort();
         
-        for(i = 0; i<treeInstance.nodesValue.length; i++)
-            assert.equal(treeInstance.nodesValue[i], i+1);
+        for(i = 0; i<treeInstance.nodeValues.length; i++)
+            assert.equal(treeInstance.nodeValues[i], i+1);
     });
 
     it('check sum of nodes', () =>{
         let treeInstance = new BinaryTree(1);
-        treeInstance.addNode(2, side.LEFT);
-        treeInstance.addNode(3, side.RIGHT);
+        treeInstance.addTreeNode(2, side.LEFT);
+        treeInstance.addTreeNode(3, side.RIGHT);
 
         treeInstance.prepareNodesArray();
         
@@ -92,19 +92,19 @@ describe('Class BinaryTree Test', () => {
 
     it('check average of nodes', () =>{
         let treeInstance = new BinaryTree(1);
-        treeInstance.addNode(2, side.LEFT);
-        treeInstance.addNode(3, side.RIGHT);
+        treeInstance.addTreeNode(2, side.LEFT);
+        treeInstance.addTreeNode(3, side.RIGHT);
 
         treeInstance.prepareNodesArray();
-        var sum = treeInstance.sumSubtreeValues();
+        let sum = treeInstance.sumSubtreeValues();
         
         assert.equal(treeInstance.calculateAverageSubtree(sum), 2);
     });
 
     it('check median of nodes', () =>{
         let treeInstance = new BinaryTree(1);
-        treeInstance.addNode(2, side.LEFT);
-        treeInstance.addNode(3, side.RIGHT);
+        treeInstance.addTreeNode(2, side.LEFT);
+        treeInstance.addTreeNode(3, side.RIGHT);
 
         treeInstance.prepareNodesArray();
         
