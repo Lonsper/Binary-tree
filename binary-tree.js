@@ -1,5 +1,5 @@
 const side = require('./constants');
-const TreeNode = require('./treeNode');
+const TreeNode = require('./tree-node');
 
 module.exports = class BinaryTree {
     constructor(rootValue) {
