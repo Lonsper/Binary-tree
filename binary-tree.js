@@ -20,12 +20,27 @@ module.exports = class BinaryTree {
 
     moveCursor(currentSide) {
         switch (currentSide) {
-            case side.LEFT: this.cursor = this.cursor.nextLeft;
-                break;
-            case side.RIGHT: this.cursor = this.cursor.nextRight;
-                break;
-            case side.BACK: this.cursor = this.cursor.parent;
-                break;
+            case side.LEFT: {
+                if (this.cursor.nextLeft === null) {
+                    console.log('This node does not have a left leaf - moveCursor() error!');
+                } else {
+                    this.cursor = this.cursor.nextLeft;
+                }
+            } break;
+            case side.RIGHT: {
+                if (this.cursor.nextRight === null) {
+                    console.log('This node does not have a right leaf - moveCursor() error!');
+                } else {
+                    this.cursor = this.cursor.nextRight;
+                }
+            } break;
+            case side.BACK: {
+                if (this.cursor.parent === null) {
+                    console.log('The root node does not have a parent - moveCursor() error!');
+                } else {
+                    this.cursor = this.cursor.parent;
+                }
+            } break;
             default: console.log('Wrong direction - moveCursor() error!');
         }
     }
