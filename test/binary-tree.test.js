@@ -1,5 +1,5 @@
-const assert = require('assert');
 const BinaryTree = require('../binary-tree');
+const assert = require('assert');
 
 describe('Enum Side Test', () => {
     it('side.LEFT equal 0', () => {

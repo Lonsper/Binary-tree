@@ -1,42 +1,30 @@
-module.exports = side = {
-    LEFT : 0,
-    RIGHT : 1,
-    BACK : 2
-}
-
-class Node {
-    constructor(value, parent){
-        this.value = value;
-        this.parent = parent;
-        this.nextLeft = null;
-        this.nextRight = null;
-    }
-}
+const side = require('./constants');
+const TreeNode = require('./treeNode');
 
 module.exports = class BinaryTree {
     constructor(rootValue) {
-        this.root = new Node(rootValue, null);
+        this.root = new TreeNode(rootValue, null);
         this.cursor = this.root;
         this.nodesValue = [];
     }
 
-    addNode(value, side) {
-        switch (side) {
-            case 0 : this.cursor.nextLeft = new Node(value, this.cursor);
+    addTreeNode(value, currentSide) {
+        switch (currentSide) {
+            case side.LEFT: this.cursor.nextLeft = new TreeNode(value, this.cursor);
                 break;
-            case 1 : this.cursor.nextRight = new Node(value, this.cursor);
+            case side.RIGHT: this.cursor.nextRight = new TreeNode(value, this.cursor);
                 break;
-            default : console.log('Wrong side - addNode() error!');
+            default : console.log('Wrong side - addTreeNode() error!');
         }
     }
 
-    moveCursor(side) {
-        switch (side) {
-            case 0 : this.cursor = this.cursor.nextLeft;
+    moveCursor(currentSide) {
+        switch (currentSide) {
+            case side.LEFT: this.cursor = this.cursor.nextLeft;
                 break;
-            case 1 : this.cursor = this.cursor.nextRight;
+            case side.RIGHT: this.cursor = this.cursor.nextRight;
                 break;
-            case 2 : this.cursor = this.cursor.parent;
+            case side.BACK: this.cursor = this.cursor.parent;
                 break;
             default : console.log('Wrong direction - moveCursor() error!');
         }
